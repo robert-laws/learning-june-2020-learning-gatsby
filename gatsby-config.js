@@ -1,8 +1,25 @@
 module.exports = {
   siteMetadata: {
-    title: `Learning Gatsby Code Along`,
+    title: `Learning Gatsby`,
+    author: {
+      name: `Robert Laws`,
+      summary: `Web Developer`,
+    },
     description: `Code along to Learning Gatsby course`,
-    author: `Robert Laws`,
+    navigation: [
+      {
+        name: `Home`,
+        url: `/`,
+      },
+      {
+        name: `About`,
+        url: `/about/`,
+      },
+      {
+        name: `Contact`,
+        url: `/contact/`,
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -32,8 +49,21 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `images`,
-        path: `${__dirname}/content/images/`,
+        name: `events`,
+        path: `${__dirname}/content/events/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `events`,
+        path: `${__dirname}/`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-yaml`,
+      options: {
+        typeName: `Event`,
       },
     },
 

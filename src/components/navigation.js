@@ -1,20 +1,28 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, useStaticQuery, graphql } from "gatsby"
 
 const Navigation = () => {
+  const data = useStaticQuery(graphql`
+    query siteNavigationQuery {
+      site {
+        siteMetadata {
+          navigation {
+            name
+            url
+          }
+        }
+      }
+    }
+  `)
   return (
     <nav>
       <h2 className="logo">Header</h2>
       <div className="nav_links">
-        <Link to="/" activeClassName="active">
-          Home
-        </Link>
-        <Link to="/about/" activeClassName="active">
-          About Us
-        </Link>
-        <Link to="/contact/" activeClassName="active">
-          Contact
-        </Link>
+        {data.site.siteMetadata.navigation.map((link, index) => (
+          <Link key={index} to={link.url} activeClassName="active">
+            {link.name}
+          </Link>
+        ))}
       </div>
     </nav>
   )

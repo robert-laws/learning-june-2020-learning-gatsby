@@ -18,6 +18,11 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          description
+          author {
+            name
+            summary
+          }
         }
       }
     }
@@ -33,7 +38,11 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <aside>Sidebar Content</aside>
+        <aside>{data.site.siteMetadata.description}</aside>
+        <aside>
+          {data.site.siteMetadata.author.name},{" "}
+          {data.site.siteMetadata.author.summary}
+        </aside>
         <main>{children}</main>
         <footer>
           © {new Date().getFullYear()}, Built with
