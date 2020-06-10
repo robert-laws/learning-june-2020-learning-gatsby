@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Event from "../components/event"
 
 const Events = ({ data }) => {
   return (
@@ -10,8 +11,10 @@ const Events = ({ data }) => {
       <SEO title="Events" />
       <section>
         <h1>Events</h1>
+        <hr />
+        {console.log(data.futureEvents.nodes)}
         {data.futureEvents.nodes.map(event => (
-          <p>{event.name}</p>
+          <Event key={event.id} event={event} />
         ))}
       </section>
     </Layout>

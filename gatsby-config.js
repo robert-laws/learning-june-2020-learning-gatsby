@@ -19,6 +19,10 @@ module.exports = {
         name: `Contact`,
         url: `/contact/`,
       },
+      {
+        name: `Events`,
+        url: `/events/`,
+      },
     ],
   },
   plugins: [
@@ -54,16 +58,30 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `events`,
-        path: `${__dirname}/`,
-      },
-    },
-    {
       resolve: `gatsby-transformer-yaml`,
       options: {
         typeName: `Event`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `articles`,
+        path: `${__dirname}/content/articles`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1080,
+              quality: 100,
+            },
+          },
+        ],
       },
     },
 
